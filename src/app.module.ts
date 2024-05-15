@@ -7,9 +7,9 @@ import { UserModule } from './api/user/user.module';
 
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb://localhost/notes-implementation-db'),
     NoteModule,
     UserModule,
-    MongooseModule.forRoot('mongodb://localhost/notes-implementation-db'),
   ],
   controllers: [AppController],
   providers: [AppService],
