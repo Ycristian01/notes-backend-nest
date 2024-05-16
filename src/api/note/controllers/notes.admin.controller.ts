@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { NoteService } from '../services/note.service';
 import { CreateNoteDto } from '../dto/note.dto';
@@ -27,5 +35,18 @@ export class NotesAdminController {
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Note> {
     return this.notesAdminService.findOne(id);
+  }
+
+  @Patch(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() body: CreateNoteDto,
+  ): Promise<Note> {
+    return this.notesAdminService.update(id, body);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string): Promise<Note> {
+    return this.notesAdminService.delete(id);
   }
 }

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateNoteDto {
   @ApiProperty({ example: 'TODO monday' })
@@ -12,7 +12,20 @@ export class CreateNoteDto {
   @IsNotEmpty()
   content: string;
 
-  @ApiProperty({ example: '6644e59ff3fb47a9db6776fa' })
+  @ApiProperty({ example: '1' })
   @IsNotEmpty()
   authorId: string;
+}
+
+export class UpdateNoteDto {
+  @ApiProperty({ example: 'TODO tuesday (correction)' })
+  @IsOptional()
+  title: string;
+
+  @ApiProperty({
+    example:
+      '1. finish backend feature 2. call tigo to stop receiving calls 3. check bank account',
+  })
+  @IsOptional()
+  content: string;
 }
